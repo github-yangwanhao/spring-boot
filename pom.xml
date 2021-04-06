@@ -14,5 +14,10 @@
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>exception-retry-demo</module>
+        <module>spring-boot-test</module>
+        <module>transaction-test</module>
+    </modules>
 
 </project>
