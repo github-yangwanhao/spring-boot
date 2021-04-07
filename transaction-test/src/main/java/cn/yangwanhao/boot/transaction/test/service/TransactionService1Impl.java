@@ -10,20 +10,27 @@ import cn.yangwanhao.boot.transaction.test.dao.TransactionTestMapper;
 import cn.yangwanhao.boot.transaction.test.pojo.request.AddPersonRequest;
 import cn.yangwanhao.boot.transaction.test.pojo.table.TransactionTest;
 import cn.yangwanhao.boot.transaction.test.pojo.table.TransactionTestInfo;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author 杨万浩
  * @version V1.0
- * @since 2021/4/1 20:55
+ * @since 2021/4/1 17:55
  */
-@Service("secondFailWithoutTransaction")
-public class TransactionServiceSecondFailWithoutTransactionImpl implements TransactionService {
+@Service("service1")
+@Slf4j
+public class TransactionService1Impl implements TransactionService {
 
     @Autowired
     private TransactionTestMapper mapper;
     @Autowired
     private TransactionTestInfoMapper infoMapper;
 
+    /**
+     * 正常情况,能够在两张表成功插入两条数据
+     * @param request request请求参数
+     * @return 操作是否成功
+     */
     @Override
     public Boolean operate(AddPersonRequest request) {
         // 生成UUID
@@ -35,8 +42,6 @@ public class TransactionServiceSecondFailWithoutTransactionImpl implements Trans
         bean.setAge(request.getAge());
         bean.setGender(request.getGender());
         int result = mapper.insert(bean);
-        // 此处发生异常
-        int a = 1 / 0;
         // 插入第二张表数据
         TransactionTestInfo beanInfo = new TransactionTestInfo();
         beanInfo.setId(id);
