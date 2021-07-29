@@ -18,6 +18,7 @@
         <module>exception-retry-demo</module>
         <module>spring-boot-test</module>
         <module>transaction-test</module>
+        <module>multiple-datasource</module>
     </modules>
 
 </project>
