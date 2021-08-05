@@ -1,3 +1,9 @@
+jasypt:
+  encrytor:
+    #用来加解密的salt值
+    password: Abc2er!@#$
+    #用来使用新的算法，默认为org.jasypt.salt.NoOPIVGenerator,这样的话我们就无法使用命令行中生成的密文
+    ivGeneratorClassname: org.jasypt.salt.RandomIVGenerator
 spring:
   application:
     name: transaction-test
@@ -15,8 +21,6 @@ server:
 logging:
   level:
     cn.yangwanhao:
-      debug
-    org.springframework:
       debug
     org.mybatis:
       debug
