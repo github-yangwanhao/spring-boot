@@ -20,6 +20,8 @@ import cn.yangwanhao.multipledatasource.model.db.Dept;
 import cn.yangwanhao.multipledatasource.model.db.DeptExample;
 import cn.yangwanhao.multipledatasource.model.db.ExceptionTrade;
 import cn.yangwanhao.multipledatasource.model.db.ExceptionTradeExample;
+import cn.yangwanhao.multipledatasource.request.AddDictRequest;
+import cn.yangwanhao.multipledatasource.service.IDictService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -35,6 +37,8 @@ public class MultipleDatasourceApplicationTests {
     private DeptMapper deptMapper;
     @Autowired
     private ExceptionTradeMapper exceptionTradeMapper;
+    @Autowired
+    private IDictService dictService;
 
     @Test
     public void testQuery() {
@@ -46,6 +50,18 @@ public class MultipleDatasourceApplicationTests {
         log.info("部门表数据是:{}", depts);
         List<ExceptionTrade> exceptionTrades = exceptionTradeMapper.selectByExample(new ExceptionTradeExample());
         log.info("异常表的数据是:{}", exceptionTrades);
+    }
+
+    @Test
+    public void testAddItem() {
+        AddDictRequest request = new AddDictRequest();
+        request.setDictKey("1");
+        request.setDictName("1");
+        request.setDictDesc("1");
+        request.setItemKey("3");
+        request.setItemName("3");
+        request.setTenantId("001");
+        dictService.addDict(request);
     }
 
 }
