@@ -19,6 +19,7 @@
         <module>spring-boot-test</module>
         <module>transaction-test</module>
         <module>multiple-datasource</module>
+        <module>news_mail</module>
     </modules>
 
 </project>
