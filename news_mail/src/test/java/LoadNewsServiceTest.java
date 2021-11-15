@@ -11,6 +11,8 @@ import com.alibaba.fastjson.JSONObject;
 
 import cn.yangwanhao.base.common.util.IdUtils;
 import cn.yangwanhao.news_mail.NewsMailApplication;
+import cn.yangwanhao.news_mail.dao.biz.BizBaiduTopNewsMapper;
+import cn.yangwanhao.news_mail.job.SendNewsEmailJob;
 import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
@@ -32,6 +34,10 @@ public class LoadNewsServiceTest {
 
     @Autowired
     private SyncNewsService syncNewsService;
+    @Autowired
+    private SendNewsEmailJob sendNewsEmailJob;
+    @Autowired
+    private BizBaiduTopNewsMapper bizBaiduTopNewsMapper;
 
     @Test
     public void testLoadBaiduNews() {
@@ -43,6 +49,15 @@ public class LoadNewsServiceTest {
     public void testSyncBaiduNews() {
         Long snowFlakeId = IdUtils.getSnowFlakeId();
         syncNewsService.syncNewsToDatabase(String.valueOf(snowFlakeId));
+    }
+
+    @Test
+    public void testSendMail() {
+        sendNewsEmailJob.process();
+    }
+
+    @Test
+    public void testDataMove() {
     }
 
 }

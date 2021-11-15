@@ -2,6 +2,7 @@ package cn.yangwanhao.news_mail.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,12 @@ import org.springframework.stereotype.Service;
 
 import cn.yangwanhao.base.common.util.IdUtils;
 import cn.yangwanhao.news_mail.dao.BaiduTopNewsMapper;
+import cn.yangwanhao.news_mail.enums.EnumNewsChannelType;
 import cn.yangwanhao.news_mail.model.BaiduTopNews;
 import cn.yangwanhao.news_mail.model.BaiduTopNewsExample;
 import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
+import cn.yangwanhao.news_mail.service.NewsMailRecordService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,11 +32,16 @@ public class BaiduSyncNewsServiceImp implements SyncNewsService {
     @Autowired
     @Qualifier("baiduLoadNewsServiceImpl")
     private LoadNewsService<BaiduNewsDto> loadNewsService;
+
+    @Autowired
+    private NewsMailRecordService newsMailRecordService;
+
     @Autowired
     private BaiduTopNewsMapper baiduTopNewsMapper;
 
     @Override
     public void syncNewsToDatabase(String batchId) {
+        AtomicInteger insertCount = new AtomicInteger(0);
         BaiduTopNewsExample example = new BaiduTopNewsExample();
         List<BaiduTopNews> baiduTopNewsList = baiduTopNewsMapper.selectByExample(example);
         List<String> titleList = baiduTopNewsList.stream()
@@ -58,6 +66,15 @@ public class BaiduSyncNewsServiceImp implements SyncNewsService {
             model.setCreateTime(new Date());
             model.setUpdateTime(new Date());
             baiduTopNewsMapper.insert(model);
+            insertCount.incrementAndGet();
         }
+        if (insertCount.get() != 0) {
+            newsMailRecordService.initOneRecord(batchId, getChannelType());
+        }
+    }
+
+    @Override
+    public EnumNewsChannelType getChannelType() {
+        return EnumNewsChannelType.BAI_DU;
     }
 }

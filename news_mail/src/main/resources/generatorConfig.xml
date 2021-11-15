@@ -55,7 +55,9 @@
         </javaClientGenerator>
 
         <!-- 指定在数据库中已经存在的表名 -->
-        <table schema="" tableName="baidu_top_news" />
+        <!-- <table schema="" tableName="baidu_top_news" /> -->
+        <!-- <table schema="" tableName="user_email_info" /> -->
+        <table schema="" tableName="news_mail_record" />
         <!--
         有些表的字段需要指定java类型
 		<table schema="" tableName="">
