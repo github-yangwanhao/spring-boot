@@ -31,8 +31,8 @@ public class SyncBaiduTopNewsJob {
     @Qualifier("redisLockComponent")
     private ILockComponent lockComponent;
 
-    // @Scheduled(cron = "0 0/30 * * * ?")
-    @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "0 0/30 * * * ?")
+    // @Scheduled(cron = "0/10 * * * * ?")
     private void process(){
         try {
             ResponseMessage<Boolean> lockResult = lockComponent.tryLock(RedisLockKeyUtil.getSyncNewsBaiduKey(), 120L);
