@@ -1,5 +1,6 @@
 package cn.yangwanhao.news_mail.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class QueryBaiduNewsServiceImpl implements QueryNewsService {
         }
         StringBuilder sb = new StringBuilder();
         if (!CollectionUtils.isEmpty(baiduTopNews)) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             sb.append(separateLine)
                 .append("\r\n");
             for (BaiduTopNews news : baiduTopNews) {
@@ -61,6 +63,9 @@ public class QueryBaiduNewsServiceImpl implements QueryNewsService {
                     .append("\r\n")
                     .append("hotScore : ")
                     .append(news.getHotScore())
+                    .append("\r\n")
+                    .append("同步时间 : ")
+                    .append(simpleDateFormat.format(news.getCreateTime()))
                     .append("\r\n")
                     .append(separateLine)
                     .append("\r\n");
