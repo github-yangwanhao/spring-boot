@@ -28,6 +28,9 @@ public class QueryBaiduNewsServiceImpl implements QueryNewsService {
 
     @Override
     public StringBuilder getNewsDetailStr(List<String> batchIdList) {
+        if (CollectionUtils.isEmpty(batchIdList)) {
+            return new StringBuilder();
+        }
         BaiduTopNewsExample example = new BaiduTopNewsExample();
         BaiduTopNewsExample.Criteria criteria = example.createCriteria();
         criteria.andBatchIdIn(batchIdList);
