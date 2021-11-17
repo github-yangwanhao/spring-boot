@@ -37,3 +37,9 @@ spring:
 logging:
   config: classpath:logback-spring.xml
   path: /app/logs/news_email
+cn:
+  yangwanhao:
+    send_email:
+      cron:
+        syncBaiduTopNewsJob: '0 0/30 * * * ?'
+        sendNewsEmailJob: '0 5 9,14,18 ? * 2-6'

@@ -42,7 +42,7 @@ public class SendNewsEmailJob {
      * @param
      * @return
      */
-    @Scheduled(cron = "0 5 9,14,18 ? * 2-6")
+    @Scheduled(cron = "${cn.yangwanhao.send_email.cron.sendNewsEmailJob}")
     public void process() {
         Map<String, List<String>> batchIdListMap = new HashMap<>();
         // 查询出所有的邮件

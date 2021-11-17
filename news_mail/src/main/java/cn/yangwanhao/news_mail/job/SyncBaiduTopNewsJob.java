@@ -1,6 +1,5 @@
 package cn.yangwanhao.news_mail.job;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,8 +30,7 @@ public class SyncBaiduTopNewsJob {
     @Qualifier("redisLockComponent")
     private ILockComponent lockComponent;
 
-    @Scheduled(cron = "0 0/30 * * * ?")
-    // @Scheduled(cron = "0/10 * * * * ?")
+    @Scheduled(cron = "${cn.yangwanhao.send_email.cron.syncBaiduTopNewsJob}")
     private void process(){
         try {
             ResponseMessage<Boolean> lockResult = lockComponent.tryLock(RedisLockKeyUtil.getSyncNewsBaiduKey(), 120L);
