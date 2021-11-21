@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.yangwanhao.base.common.support.ResponseMessage;
 import cn.yangwanhao.boot.exception.retry.demo.dto.OperateDto;
 import cn.yangwanhao.boot.exception.retry.demo.service.IOperateService;
+import cn.yangwanhao.support.ResponseMessage;
 
 /**
  * @author 杨万浩

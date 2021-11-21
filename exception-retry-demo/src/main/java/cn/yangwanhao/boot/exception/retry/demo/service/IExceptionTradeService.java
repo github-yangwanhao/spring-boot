@@ -1,7 +1,7 @@
 package cn.yangwanhao.boot.exception.retry.demo.service;
 
-import cn.yangwanhao.base.common.support.ResponseMessage;
 import cn.yangwanhao.boot.exception.retry.demo.model.ExceptionTrade;
+import cn.yangwanhao.support.ResponseMessage;
 
 /**
  * @author 杨万浩

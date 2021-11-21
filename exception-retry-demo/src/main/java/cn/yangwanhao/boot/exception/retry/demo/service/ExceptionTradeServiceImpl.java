@@ -8,11 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import cn.yangwanhao.base.common.exception.BasicException;
-import cn.yangwanhao.base.common.support.ResponseMessage;
-import cn.yangwanhao.base.common.util.IdUtils;
+import cn.yangwanhao.base.exception.BasicException;
 import cn.yangwanhao.boot.exception.retry.demo.mapper.ExceptionTradeMapper;
 import cn.yangwanhao.boot.exception.retry.demo.model.ExceptionTrade;
+import cn.yangwanhao.support.ResponseMessage;
+import cn.yangwanhao.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -39,7 +39,7 @@ public class ExceptionTradeServiceImpl implements IExceptionTradeService {
     public ResponseMessage<Object> exceptionRetry(String exceptionId) {
         ExceptionTrade trade = exceptionTradeMapper.selectByPrimaryKey(exceptionId);
         if (trade == null) {
-            throw new BasicException(500, "未查到异常登记流水");
+            throw new BasicException("500", "未查到异常登记流水");
         }
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");

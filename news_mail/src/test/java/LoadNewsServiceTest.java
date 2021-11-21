@@ -9,13 +9,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.alibaba.fastjson.JSONObject;
 
-import cn.yangwanhao.base.common.util.IdUtils;
 import cn.yangwanhao.news_mail.NewsMailApplication;
 import cn.yangwanhao.news_mail.dao.biz.BizBaiduTopNewsMapper;
 import cn.yangwanhao.news_mail.job.SendNewsEmailJob;
 import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
+import cn.yangwanhao.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**

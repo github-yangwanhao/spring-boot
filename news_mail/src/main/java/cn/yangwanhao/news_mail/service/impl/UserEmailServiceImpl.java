@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import cn.yangwanhao.base.common.enums.EnumBoolean;
+import cn.yangwanhao.base.enums.EnumBoolean;
 import cn.yangwanhao.news_mail.dao.UserEmailInfoMapper;
 import cn.yangwanhao.news_mail.model.UserEmailInfo;
 import cn.yangwanhao.news_mail.model.UserEmailInfoExample;

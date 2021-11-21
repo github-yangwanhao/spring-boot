@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import cn.yangwanhao.base.common.util.IdUtils;
 import cn.yangwanhao.news_mail.dao.BaiduTopNewsMapper;
 import cn.yangwanhao.news_mail.enums.EnumNewsChannelType;
 import cn.yangwanhao.news_mail.model.BaiduTopNews;
@@ -18,6 +17,7 @@ import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
 import cn.yangwanhao.news_mail.service.NewsMailRecordService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
+import cn.yangwanhao.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**

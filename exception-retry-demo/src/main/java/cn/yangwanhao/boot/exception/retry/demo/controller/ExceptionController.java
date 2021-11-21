@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.yangwanhao.base.common.support.ResponseMessage;
 import cn.yangwanhao.boot.exception.retry.demo.service.IExceptionTradeService;
+import cn.yangwanhao.support.ResponseMessage;
 import lombok.extern.slf4j.Slf4j;
 
 /**

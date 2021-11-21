@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.yangwanhao.base.common.enums.EnumBoolean;
-import cn.yangwanhao.base.common.util.IdUtils;
+import cn.yangwanhao.base.enums.EnumBoolean;
 import cn.yangwanhao.news_mail.dao.NewsMailRecordMapper;
 import cn.yangwanhao.news_mail.enums.EnumNewsChannelType;
 import cn.yangwanhao.news_mail.model.NewsMailRecord;
 import cn.yangwanhao.news_mail.model.NewsMailRecordExample;
 import cn.yangwanhao.news_mail.service.NewsMailRecordService;
+import cn.yangwanhao.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**

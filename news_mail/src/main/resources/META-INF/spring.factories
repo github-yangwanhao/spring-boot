@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration = \
+  cn.yangwanhao.sdk.common.component.impl.RedisLockComponentImpl \
+  ,cn.yangwanhao.sdk.common.component.impl.ZookeeperLockComponentImpl \
