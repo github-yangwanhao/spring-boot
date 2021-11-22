@@ -42,4 +42,4 @@ cn:
     send_email:
       cron:
         syncBaiduTopNewsJob: '0 0/30 * * * ?'
-        sendNewsEmailJob: '0 5 9,14,18 ? * 2-6'
+        sendNewsEmailJob: '0 5 9,14,18 ? * *'
