@@ -24,3 +24,5 @@ logging:
       debug
     org.mybatis:
       debug
+token:
+  signature: 1234567890
