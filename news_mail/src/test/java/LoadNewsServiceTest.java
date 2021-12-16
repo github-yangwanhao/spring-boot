@@ -15,7 +15,7 @@ import cn.yangwanhao.news_mail.job.SendNewsEmailJob;
 import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
-import cn.yangwanhao.util.IdUtils;
+import cn.yangwanhao.util.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**

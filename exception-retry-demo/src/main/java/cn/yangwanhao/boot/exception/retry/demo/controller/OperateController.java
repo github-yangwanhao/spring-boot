@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cn.yangwanhao.boot.exception.retry.demo.dto.OperateDto;
 import cn.yangwanhao.boot.exception.retry.demo.service.IOperateService;
-import cn.yangwanhao.support.ResponseMessage;
+import cn.yangwanhao.model.vo.ResponseMessage;
 
 /**
  * @author 杨万浩

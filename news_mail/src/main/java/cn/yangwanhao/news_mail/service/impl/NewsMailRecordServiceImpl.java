@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import cn.yangwanhao.base.enums.EnumBoolean;
+import cn.yangwanhao.model.enums.EnumBoolean;
 import cn.yangwanhao.news_mail.dao.NewsMailRecordMapper;
 import cn.yangwanhao.news_mail.enums.EnumNewsChannelType;
 import cn.yangwanhao.news_mail.model.NewsMailRecord;
 import cn.yangwanhao.news_mail.model.NewsMailRecordExample;
 import cn.yangwanhao.news_mail.service.NewsMailRecordService;
-import cn.yangwanhao.util.IdUtils;
+import cn.yangwanhao.util.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,7 +33,7 @@ public class NewsMailRecordServiceImpl implements NewsMailRecordService {
         NewsMailRecordExample example = new NewsMailRecordExample();
         NewsMailRecordExample.Criteria criteria = example.createCriteria();
         criteria.andChannelTypeEqualTo(channelType.getCode());
-        criteria.andHasMailEqualTo(EnumBoolean.FALSE.getKey());
+        criteria.andHasMailEqualTo(EnumBoolean.FALSE.getCode());
         List<NewsMailRecord> newsMailRecords = newsMailRecordMapper.selectByExample(example);
         return newsMailRecords.stream()
             .map(NewsMailRecord::getBatchId)
@@ -49,7 +49,7 @@ public class NewsMailRecordServiceImpl implements NewsMailRecordService {
         criteria.andBatchIdIn(batchIdList);
 
         NewsMailRecord record = new NewsMailRecord();
-        record.setHasMail(EnumBoolean.TRUE.getKey());
+        record.setHasMail(EnumBoolean.TRUE.getCode());
 
         newsMailRecordMapper.updateByExampleSelective(record, example);
     }
@@ -60,7 +60,7 @@ public class NewsMailRecordServiceImpl implements NewsMailRecordService {
         record.setId(IdUtils.getSnowFlakeIdString());
         record.setBatchId(batchId);
         record.setChannelType(channelType.getCode());
-        record.setHasMail(EnumBoolean.FALSE.getKey());
+        record.setHasMail(EnumBoolean.FALSE.getCode());
         record.setCreateTime(new Date());
         record.setUpdateTime(new Date());
         newsMailRecordMapper.insertSelective(record);

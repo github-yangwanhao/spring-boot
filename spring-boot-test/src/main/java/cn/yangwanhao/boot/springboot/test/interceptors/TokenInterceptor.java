@@ -16,8 +16,8 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import cn.yangwanhao.support.LoginUserInfo;
-import cn.yangwanhao.util.AppParamUtil;
+import cn.yangwanhao.util.po.LoginUserInfo;
+import cn.yangwanhao.util.util.AppParamUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -52,7 +52,7 @@ public class TokenInterceptor implements HandlerInterceptor {
             .asString();
         loginUserInfo.setRoles(JSONArray.parseArray(rolesJson, String.class));
 
-        AppParamUtil.setLoginUser(loginUserInfo);
+        AppParamUtils.setLoginUser(loginUserInfo);
         return true;
     }
 
@@ -63,7 +63,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        AppParamUtil.removeAll();
+        AppParamUtils.removeAll();
     }
 
 }

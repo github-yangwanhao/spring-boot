@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import cn.yangwanhao.model.vo.ResponseMessage;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
 import cn.yangwanhao.news_mail.utils.RedisLockKeyUtil;
 import cn.yangwanhao.sdk.common.component.ILockComponent;
-import cn.yangwanhao.support.ResponseMessage;
-import cn.yangwanhao.util.IdUtils;
+import cn.yangwanhao.util.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**

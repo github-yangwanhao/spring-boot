@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import cn.yangwanhao.base.enums.EnumBoolean;
+import cn.yangwanhao.model.enums.EnumBoolean;
 import cn.yangwanhao.news_mail.dao.UserEmailInfoMapper;
 import cn.yangwanhao.news_mail.model.UserEmailInfo;
 import cn.yangwanhao.news_mail.model.UserEmailInfoExample;
@@ -30,7 +30,7 @@ public class UserEmailServiceImpl implements UserEmailService {
     public String getEmailAddressListStr() {
         UserEmailInfoExample example = new UserEmailInfoExample();
         UserEmailInfoExample.Criteria criteria = example.createCriteria();
-        criteria.andEmailStatusEqualTo(EnumBoolean.TRUE.getKey());
+        criteria.andEmailStatusEqualTo(EnumBoolean.TRUE.getCode());
         List<UserEmailInfo> userEmailInfos = userEmailInfoMapper.selectByExample(example);
         if (CollectionUtils.isEmpty(userEmailInfos)) {
             return null;

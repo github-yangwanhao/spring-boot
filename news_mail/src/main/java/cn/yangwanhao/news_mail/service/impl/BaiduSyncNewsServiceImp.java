@@ -19,8 +19,8 @@ import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
 import cn.yangwanhao.news_mail.service.NewsMailRecordService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
-import cn.yangwanhao.util.DateUtils;
-import cn.yangwanhao.util.IdUtils;
+import cn.yangwanhao.util.util.DateUtils;
+import cn.yangwanhao.util.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -51,7 +51,7 @@ public class BaiduSyncNewsServiceImp implements SyncNewsService {
         // 查询过去30天的百度头条 基本上不会有头条活过30天
         BaiduTopNewsExample example = new BaiduTopNewsExample();
         BaiduTopNewsExample.Criteria criteria = example.createCriteria();
-        criteria.andCreateTimeGreaterThanOrEqualTo(DateUtils.getPastDate(30));
+        criteria.andCreateTimeGreaterThanOrEqualTo(DateUtils.getPastDate(new Date(), 30));
         List<BaiduTopNews> baiduTopNewsList = baiduTopNewsMapper.selectByExample(example);
         // 只获取title
         List<String> titleList = baiduTopNewsList.stream()
