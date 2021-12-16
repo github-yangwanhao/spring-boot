@@ -18,12 +18,17 @@ public class OrderStatusMachine extends AbstractStatusMachine {
     }
 
     @Override
+    protected Class<?> enumClass() {
+        return EnumOrderStatus.class;
+    }
+
+    @Override
     protected void init() {
         List<StatusMachineRelation> list = new ArrayList<>();
         list.add(new StatusMachineRelation(EnumOrderStatus.INIT.getCode(), EnumOrderStatus.APPROVING.getCode()));
         list.add(new StatusMachineRelation(EnumOrderStatus.APPROVING.getCode(), EnumOrderStatus.DEALING.getCode()));
         list.add(new StatusMachineRelation(EnumOrderStatus.DEALING.getCode(), EnumOrderStatus.SUCCESS.getCode()));
         list.add(new StatusMachineRelation(EnumOrderStatus.DEALING.getCode(), EnumOrderStatus.FAILED.getCode()));
-        super.map.put(EnumOrderStatus.class, list);
+        super.map.put(enumClass(), list);
     }
 }

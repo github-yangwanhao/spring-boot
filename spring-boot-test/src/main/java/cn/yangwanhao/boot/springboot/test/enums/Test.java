@@ -10,8 +10,8 @@ import cn.yangwanhao.util.support.AbstractStatusMachine;
 public class Test {
 
     public static void main(String[] args) {
-        boolean flag = StatusMachineFactory.getInstance(EnumOrderStatus.class).checkStatus(EnumOrderStatus.class, "3", "5");
-        boolean flag1 = StatusMachineFactory.getInstance(EnumUserStatus.class).checkStatus(EnumUserStatus.class, "3", "6");
+        boolean flag = StatusMachineFactory.getInstance(EnumOrderStatus.class).checkStatus("3", "5");
+        boolean flag1 = StatusMachineFactory.getInstance(EnumUserStatus.class).checkStatus("3", "6");
         System.out.println(flag);
         System.out.println(flag1);
     }
