@@ -3,6 +3,8 @@ package cn.yangwanhao.boot.springboot.test.enums;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import cn.yangwanhao.util.po.StatusMachineRelation;
 import cn.yangwanhao.util.support.AbstractStatusMachine;
 
@@ -11,6 +13,7 @@ import cn.yangwanhao.util.support.AbstractStatusMachine;
  * @version V3.0
  * @since 2021/12/16 11:40
  */
+@Component
 public class OrderStatusMachine extends AbstractStatusMachine {
 
     public OrderStatusMachine() {
