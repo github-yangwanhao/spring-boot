@@ -45,9 +45,9 @@ public class SendNewsEmailJob {
     @Scheduled(cron = "${cn.yangwanhao.send_email.cron.sendNewsEmailJob}")
     public void process() {
         Map<String, List<String>> batchIdListMap = new HashMap<>();
-        // 查询出所有的邮件
-        String emails = userEmailService.getEmailAddressListStr();
-        if (StringUtils.isBlank(emails)) {
+        // 查询出所有的邮箱
+        String[] emails = userEmailService.getEmailAddressListStr();
+        if (emails == null || emails.length == 0) {
             return;
         }
         // 查询出要发送的信息

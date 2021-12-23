@@ -7,5 +7,9 @@ package cn.yangwanhao.news_mail.service;
  */
 public interface UserEmailService {
 
-    String getEmailAddressListStr();
+    /**
+     * 获取邮箱数组
+     * @return 邮箱数组
+     */
+    String[] getEmailAddressListStr();
 }

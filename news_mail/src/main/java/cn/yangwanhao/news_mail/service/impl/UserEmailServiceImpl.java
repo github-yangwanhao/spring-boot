@@ -27,7 +27,7 @@ public class UserEmailServiceImpl implements UserEmailService {
     private UserEmailInfoMapper userEmailInfoMapper;
 
     @Override
-    public String getEmailAddressListStr() {
+    public String[] getEmailAddressListStr() {
         UserEmailInfoExample example = new UserEmailInfoExample();
         UserEmailInfoExample.Criteria criteria = example.createCriteria();
         criteria.andEmailStatusEqualTo(EnumBoolean.TRUE.getCode());
@@ -35,10 +35,11 @@ public class UserEmailServiceImpl implements UserEmailService {
         if (CollectionUtils.isEmpty(userEmailInfos)) {
             return null;
         }
-        String emails = userEmailInfos.stream()
+        List<String> emails = userEmailInfos.stream()
+            .distinct()
             .map(UserEmailInfo::getEmail)
-            .collect(Collectors.joining(","));
-        log.info("本次要发送的email有[{}]", emails);
-        return emails;
+            .collect(Collectors.toList());
+        log.info("本次要发送的email有{}", emails);
+        return emails.toArray(new String[0]);
     }
 }

@@ -41,5 +41,5 @@ cn:
   yangwanhao:
     send_email:
       cron:
-        syncBaiduTopNewsJob: '0/10 * * * * ?'
-        sendNewsEmailJob: '0 5 9,14,18 ? * 2-6'
+        syncBaiduTopNewsJob: '0/30 * * * * ?'
+        sendNewsEmailJob: '0/10 * * * * ?'
