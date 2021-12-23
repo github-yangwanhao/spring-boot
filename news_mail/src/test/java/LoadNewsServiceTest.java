@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -10,10 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.yangwanhao.news_mail.NewsMailApplication;
-import cn.yangwanhao.news_mail.dao.biz.BizBaiduTopNewsMapper;
 import cn.yangwanhao.news_mail.job.SendNewsEmailJob;
 import cn.yangwanhao.news_mail.pojo.BaiduNewsDto;
 import cn.yangwanhao.news_mail.service.LoadNewsService;
+import cn.yangwanhao.news_mail.service.QueryNewsService;
 import cn.yangwanhao.news_mail.service.SyncNewsService;
 import cn.yangwanhao.util.util.IdUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class LoadNewsServiceTest {
     @Autowired
     private SendNewsEmailJob sendNewsEmailJob;
     @Autowired
-    private BizBaiduTopNewsMapper bizBaiduTopNewsMapper;
+    private QueryNewsService baiduQueryNewsService;
 
     @Test
     public void testLoadBaiduNews() {
@@ -58,6 +59,14 @@ public class LoadNewsServiceTest {
 
     @Test
     public void testDataMove() {
+    }
+
+    @Test
+    public void query() {
+        StringBuilder str = baiduQueryNewsService.getNewsDetailStr(
+            Collections.singletonList("b54c85d0fbc84f34a2dac38257e875b6"));
+        System.out.println(str.toString());
+        System.out.println();
     }
 
 }

@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service
-public class QueryBaiduNewsServiceImpl implements QueryNewsService {
+public class QueryBaiduNewsServiceImpl extends QueryNewsService {
 
     @Autowired
     private BaiduTopNewsMapper baiduTopNewsMapper;
@@ -50,7 +50,7 @@ public class QueryBaiduNewsServiceImpl implements QueryNewsService {
         StringBuilder sb = new StringBuilder();
         if (!CollectionUtils.isEmpty(baiduTopNews)) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            sb.append(separateLine)
+            sb.append(getSeparateLine())
                 .append("\r\n");
             for (BaiduTopNews news : baiduTopNews) {
                 sb.append("热搜榜排行第").append(news.getOrderNum()).append("名")
@@ -70,7 +70,7 @@ public class QueryBaiduNewsServiceImpl implements QueryNewsService {
                     .append("同步时间 : ")
                     .append(simpleDateFormat.format(news.getCreateTime()))
                     .append("\r\n")
-                    .append(separateLine)
+                    .append(getSeparateLine())
                     .append("\r\n");
             }
         }

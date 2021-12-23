@@ -9,19 +9,23 @@ import cn.yangwanhao.news_mail.enums.EnumNewsChannelType;
  * @version V3.0
  * @since 2021/11/15 16:38
  */
-public interface QueryNewsService {
+public abstract class QueryNewsService {
 
-    String separateLine = "-----------------------------------------------------------------------------------------------";
+    private static final String SEPARATE_LINE = "---------------------------------------------%s---------------------------------------------";
+
+    protected String getSeparateLine() {
+        return String.format(SEPARATE_LINE, getChannelType().getDescription());
+    }
 
     /**
      * 获取新闻列表的字符串
      * @return str
      */
-    StringBuilder getNewsDetailStr(List<String> batchIdList);
+    public abstract StringBuilder getNewsDetailStr(List<String> batchIdList);
 
     /**
      * 获取渠道类型
      * @return 渠道类型
      */
-    EnumNewsChannelType getChannelType();
+    public abstract EnumNewsChannelType getChannelType();
 }

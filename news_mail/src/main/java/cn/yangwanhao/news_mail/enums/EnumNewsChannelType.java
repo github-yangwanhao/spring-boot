@@ -13,7 +13,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum EnumNewsChannelType{
     /** 描述 */
-    BAI_DU("001", "百度"),
+    BAI_DU("001", "百度头条"),
     ;
 
     /** 状态码 */
