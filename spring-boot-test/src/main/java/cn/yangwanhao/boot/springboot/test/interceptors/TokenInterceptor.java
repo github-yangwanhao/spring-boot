@@ -1,5 +1,7 @@
 package cn.yangwanhao.boot.springboot.test.interceptors;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,14 +12,17 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.SignatureVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+import cn.yangwanhao.model.exception.BasicException;
 import cn.yangwanhao.util.po.LoginUserInfo;
 import cn.yangwanhao.util.util.AppParamUtils;
+import cn.yangwanhao.util.util.DateUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -41,8 +46,20 @@ public class TokenInterceptor implements HandlerInterceptor {
         Algorithm algorithm = Algorithm.HMAC256(signature);
         JWTVerifier jwtVerifier = JWT.require(algorithm)
             .build();
-        DecodedJWT jwt = jwtVerifier.verify(token);
-
+        DecodedJWT jwt = null;
+        try {
+            jwt = jwtVerifier.verify(token);
+        } catch (TokenExpiredException e) {
+            Date expiresAt = JWT.decode(token)
+                .getExpiresAt();
+            String dateString = DateUtils.getDateString(expiresAt);
+            throw new BasicException("G500", "token已经在"+dateString+"过期");
+        } catch (SignatureVerificationException e) {
+            throw new BasicException("G500", "token不合法");
+        } catch (Exception e) {
+            throw new BasicException("G500", "token解析错误");
+        }
+        assert jwt != null;
         LoginUserInfo loginUserInfo = new LoginUserInfo();
         loginUserInfo.setUserId(jwt.getClaim("userId").asString());
         loginUserInfo.setUserName(jwt.getClaim("userName").asString());
