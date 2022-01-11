@@ -1,0 +1,14 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: bill
+  datasource:
+    url: jdbc:mysql://localhost:3306/bill?useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: '******'
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+logging:
+  config: classpath:logback-spring.xml
+  path: /app/logs/bill
