@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+import cn.yangwanhao.boot.springboot.test.interceptors.AppParamRemoveInterceptor;
+import cn.yangwanhao.boot.springboot.test.interceptors.PageHelperRemoveInterceptor;
 import cn.yangwanhao.boot.springboot.test.interceptors.TokenInterceptor;
 
 /**
@@ -17,6 +19,10 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Autowired
     private TokenInterceptor tokenInterceptor;
+    @Autowired
+    private PageHelperRemoveInterceptor pageHelperRemoveInterceptor;
+    @Autowired
+    private AppParamRemoveInterceptor appParamRemoveInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -26,5 +32,11 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
             .addPathPatterns("/springboot/test/token/**")
             .excludePathPatterns("/springboot/test/token/getToken")
         ;
+        registry
+            .addInterceptor(pageHelperRemoveInterceptor)
+            .addPathPatterns("/**");
+        registry
+            .addInterceptor(appParamRemoveInterceptor)
+            .addPathPatterns("/**");
     }
 }
