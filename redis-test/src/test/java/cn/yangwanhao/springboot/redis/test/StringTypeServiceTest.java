@@ -1,4 +1,4 @@
-package cn.yangwanhao.springboot.redis.test.string;
+package cn.yangwanhao.springboot.redis.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,8 +25,8 @@ public class StringTypeServiceTest {
 
     @Test
     public void test() {
-        String key = "a";
-        stringTypeService.setStr(key, "a", 0);
+        String key = "redis:test:str";
+        stringTypeService.setStr(key, "123456", 0);
         String value = stringTypeService.getStr(key);
         System.out.println(value);
     }
