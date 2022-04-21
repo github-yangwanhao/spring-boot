@@ -1,9 +1,11 @@
 package cn.yangwanhao.multipledatasource.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import cn.yangwanhao.multipledatasource.mapper.base.DictItemMapper;
 import cn.yangwanhao.multipledatasource.mapper.base.DictMapper;
@@ -24,16 +26,30 @@ public class DictServiceImpl implements IDictService {
     private DictMapper dictMapper;
     @Autowired
     private DictItemMapper dictItemMapper;
+    @Autowired
+    @Qualifier("baseTransactionTemplate")
+    private TransactionTemplate transactionTemplate;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class, value = "baseTransactionManager")
+    // @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class, value = "baseTransactionManager")
     public void addDict(AddDictRequest request) {
+        transactionTemplate.execute(transactionTemplate -> {
+            insertDict(request);
+            insertDictItem(request);
+            return true;
+        });
+        int a = 1 / 0;
+    }
+
+    private void  insertDict(AddDictRequest request) {
         Dict dict = new Dict();
         dict.setDictKey(request.getDictKey());
         dict.setDictName(request.getDictName());
         dict.setDictDesc(request.getDictDesc());
         dict.setTenantId(request.getTenantId());
         dictMapper.insert(dict);
+    }
+    private void  insertDictItem(AddDictRequest request) {
         DictItem dictItem = new DictItem();
         dictItem.setDictKey(request.getDictKey());
         dictItem.setItemKey(request.getItemKey());

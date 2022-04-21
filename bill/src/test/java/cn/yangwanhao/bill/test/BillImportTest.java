@@ -27,7 +27,7 @@ public class BillImportTest {
 
     @Test
     public void importBill() {
-        String filePath = "D:\\账单\\2021";
+        String filePath = "D:\\账单\\2022\\2022-02.xlsx";
         File rootDir = new File(filePath);
         if (rootDir.isDirectory()) {
             File[] files = rootDir.listFiles();
@@ -35,6 +35,8 @@ public class BillImportTest {
             for (File file : files) {
                 billImportService.importBill(file);
             }
+        } else {
+            billImportService.importBill(rootDir);
         }
     }
 }

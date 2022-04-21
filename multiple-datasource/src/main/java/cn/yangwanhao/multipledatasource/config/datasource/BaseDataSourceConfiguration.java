@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import com.alibaba.druid.pool.DruidDataSource;
 
@@ -57,6 +59,13 @@ public class BaseDataSourceConfiguration extends DataSourceConfiguration {
     @Bean(name = "baseSqlSessionFactory")
     public SqlSessionFactory baseSqlSessionFactory(@Qualifier("baseDataSource") DataSource dataSource) throws Exception {
         return initSqlSessionFactoryBean(dataSource, configurationCustomizers, MAPPER_LOCATION).getObject();
+    }
+
+    @Bean(name = "baseTransactionTemplate")
+    public TransactionTemplate baseTransactionTemplate() {
+        TransactionTemplate transactionTemplate = new TransactionTemplate(baseTransactionManager(baseDataSource()));
+        transactionTemplate.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+        return transactionTemplate;
     }
 
 }

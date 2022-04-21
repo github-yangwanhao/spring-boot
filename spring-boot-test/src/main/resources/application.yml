@@ -16,6 +16,8 @@ spring:
     druid:
       filters:
         stat,wall
+  aop:
+    proxy-target-class: false
 server:
   port: 8080
 logging:
