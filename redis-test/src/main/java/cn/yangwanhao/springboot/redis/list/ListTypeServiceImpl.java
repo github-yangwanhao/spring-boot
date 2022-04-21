@@ -35,6 +35,31 @@ public class ListTypeServiceImpl implements IListTypeService {
     }
 
     @Override
+    public String getValueFromIndex(String key, Integer index) {
+        return stringRedisTemplate.opsForList().index(key, index);
+    }
+
+    @Override
+    public String headPop(String key) {
+        return stringRedisTemplate.opsForList().leftPop(key);
+    }
+
+    @Override
+    public String tailPop(String key) {
+        return stringRedisTemplate.opsForList().rightPop(key);
+    }
+
+    @Override
+    public void trim(String key, Integer start, Integer end) {
+        stringRedisTemplate.opsForList().trim(key, start, end);
+    }
+
+    @Override
+    public Long getListSize(String key) {
+        return stringRedisTemplate.opsForList().size(key);
+    }
+
+    @Override
     public void clearList(String key) {
         stringRedisTemplate.opsForList().trim(key, 0, 0);
         stringRedisTemplate.opsForList().leftPop(key);
